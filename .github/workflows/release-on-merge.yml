@@ -1,0 +1,25 @@
+name: Release and version on merge
+
+on: 
+  push:
+    branches:
+      - master
+
+jobs:
+  release-on-push:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Run tests
+        run: npm test
+        
+      - uses: rymndhng/release-on-push-action@master
+        name: Bump version and release
+        with:
+          bump_version_scheme: norelease
