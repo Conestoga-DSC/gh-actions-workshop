@@ -1,5 +1,5 @@
 function complexMethod(input) {
-    return input * 3
+    return input * 2
 }
 
 module.exports = complexMethod
